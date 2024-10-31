@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.dao.StudentDao" %>
+<%@ page import="com.dao.DBConnect" %>
+<%@ page import="com.entity.Student" %><%--
   Created by IntelliJ IDEA.
   User: The Networks
   Date: 10/30/2024
@@ -19,26 +21,31 @@
             <div class="card">
                 <div class="card-body">
                     <p class="fs-3 text-center"> Edit Student</p>
-                    <form action="" method="post">
+                    <%
+                        int id = Integer.parseInt(request.getParameter("id"));
+                        StudentDao dao=new StudentDao(DBConnect.getConn());
+                        Student s = dao.getStudentById(id);
+                    %>
+                    <form action="update" method="post">
                         <div class="mb-3">
                             <label class="form-label">Ful Name</label>
-                            <input type="text" name="name" class="form-control" >
+                            <input type="text" value="<%=s.getFullName()%>" name="name" class="form-control" >
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Date Of Birth</label>
-                            <input type="date" name="dob" class="form-control" >
+                            <input type="date" value="<%=s.getDob()%>" name="dob" class="form-control" >
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Address</label>
-                            <input type="text" name="address" class="form-control" >
+                            <input type="text" value="<%=s.getAddress()%>" name="address" class="form-control" >
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Qualification</label>
-                            <input type="text" name="qualification" class="form-control" >
+                            <input type="text" value="<%=s.getQualification()%>" name="qualification" class="form-control" >
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email </label>
-                            <input type="email" name="email" class="form-control" >
+                            <input type="email" value="<%=s.getEmail()%>" name="email" class="form-control" >
                         </div>
 
 
