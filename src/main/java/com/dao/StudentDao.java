@@ -47,12 +47,12 @@ public class StudentDao {
 
             while (rs.next()){
                 s=new Student();
-                s.setId(rs.getInt(1));
-                s.setFullName(rs.getString(2));
-                s.setDob(rs.getString(3));
-                s.setAddress(rs.getString(4));
-                s.setQualification(rs.getString(5));
-                s.setEmail(rs.getString(6));
+                s.setId(rs.getInt("id"));
+                s.setFullName(rs.getString("fullName"));
+                s.setDob(rs.getString("dob"));
+                s.setAddress(rs.getString("address"));
+                s.setQualification(rs.getString("qualification"));
+                s.setEmail(rs.getString("email"));
                 list.add(s);
             }
 
@@ -85,5 +85,48 @@ public class StudentDao {
         }
         return s;
     }
+    public boolean updateStudent(Student student){
+        boolean f=false;
+        try{
+            String sql="update student set fullName= ?, dob=? ,address=?,qualification=?,email=? where id=?";
+            PreparedStatement ps=connection.prepareStatement(sql);
+            ps.setString(1,student.getFullName());
+            ps.setString(2,student.getDob());
+            ps.setString(3,student.getAddress());
+            ps.setString(4,student.getQualification());
+            ps.setString(5,student.getEmail());
+            ps.setInt(6,student.getId());
+
+            int i = ps.executeUpdate();
+
+            if(i==1){
+                f=true;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return f;
+
+    }
+    public boolean deleteStudent(int id){
+        boolean f = false;
+        try{
+            String sql = "delete from student where id=?";
+            PreparedStatement ps=connection.prepareStatement(sql);
+            ps.setInt(1,id);
+
+            int i = ps.executeUpdate();
+            if(i == 1){
+
+                f = true;
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return f;
+    }
+
 
 }

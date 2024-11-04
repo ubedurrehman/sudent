@@ -34,6 +34,30 @@
     <div class="card">
         <div class="card-header">
             <h2 class="m-0">All Student Details</h2>
+             <%
+                                    String successMessage = (String) session.getAttribute("succmsg");
+                                    if (successMessage != null) {
+                                %>
+                                <div class="alert alert-success">
+                                    <%= successMessage %>
+                                </div>
+                                <%
+                                        session.removeAttribute("succmsg");
+                                    }
+                                %>
+
+                                <%
+                                    String errorMessage = (String) session.getAttribute("error");
+                                    if (errorMessage != null) {
+                                %>
+                                <div class="alert alert-error">
+                                    <%= errorMessage %>
+                                </div>
+                                <%
+                                        session.removeAttribute("error");
+                                    }
+                                %>
+
         </div>
         <div class="card-body">
             <table class="table table-striped table-bordered">
@@ -55,13 +79,13 @@
                 %>
                 <tr>
                     <th scope="row"><%= s.getFullName() %></th>
-                    <td><%= s.getDob() %></td>
+                    <td ><%= s.getDob() %></td>
                     <td><%= s.getAddress() %></td>
                     <td><%= s.getQualification() %></td>
                     <td><%= s.getEmail() %></td>
                     <td>
                         <a href="edit_student.jsp?id=<%= s.getId() %>" class="btn btn-sm btn-custom">Edit</a>
-                        <a href="delete_student?id=<%= s.getId() %>" class="btn btn-sm btn-custom-danger ms-1">Delete</a>
+                        <a href="delete?id=<%= s.getId() %>" class="btn btn-sm btn-custom-danger ms-1">Delete</a>
                     </td>
                 </tr>
                 <%

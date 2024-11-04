@@ -48,6 +48,7 @@
                             <input type="email" value="<%=s.getEmail()%>" name="email" class="form-control" >
                         </div>
 
+                        <input type="hidden" name="id" value="<%= s.getId()%>">
 
                         <button type="submit" class="btn btn-primary col-md-12">Update</button>
                     </form>

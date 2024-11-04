@@ -15,6 +15,14 @@ public class Student {
 
     public Student( String fullName, String dob, String address, String qualification, String email) {
         super();
+        this.fullName = fullName;
+        this.dob = dob;
+        this.address = address;
+        this.qualification = qualification;
+        this.email = email;
+    }
+
+    public Student(int id, String fullName, String dob, String address, String qualification, String email) {
         this.id = id;
         this.fullName = fullName;
         this.dob = dob;
